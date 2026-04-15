@@ -1,4 +1,6 @@
 import { motion } from "framer-motion";
+import droneAerial from "@/assets/drone-aerial.jpg";
+import topoTexture from "@/assets/topo-texture.jpg";
 
 const tools = [
   { id: "01", name: "Pocket-ID", role: "Identity & SSO" },
@@ -21,62 +23,97 @@ const tools = [
 ];
 
 const PlatformOverview = () => (
-  <section id="overview" className="relative py-24 border-t border-border">
-    <div className="max-w-[1400px] mx-auto px-8 md:px-16">
-      {/* Section header */}
-      <div className="flex items-start justify-between mb-16">
-        <div>
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-label text-primary text-[10px] mb-3"
-          >
-            SYSTEM OVERVIEW
-          </motion.p>
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-5xl md:text-7xl font-bold"
-          >
-            17 Tools.
-            <br />
-            One Platform.
-          </motion.h2>
-        </div>
+  <section id="overview" className="relative border-t border-border">
+    {/* Full-bleed cinematic image strip */}
+    <div className="relative h-64 md:h-80 overflow-hidden">
+      <motion.img
+        src={droneAerial}
+        alt="Drone aerial operations"
+        className="w-full h-full object-cover"
+        initial={{ scale: 1.1 }}
+        whileInView={{ scale: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1.5 }}
+      />
+      <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-transparent to-background" />
+      <div className="absolute inset-0 bg-foreground/30 mix-blend-multiply" />
+      {/* Overlay text */}
+      <div className="absolute bottom-8 left-8 md:left-16 z-10">
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-primary-foreground text-label text-[10px] mb-2"
+        >
+          SYSTEM OVERVIEW
+        </motion.p>
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.1 }}
+          className="text-4xl md:text-6xl font-bold text-primary-foreground"
+        >
+          17 Tools. One Platform.
+        </motion.h2>
+      </div>
+      {/* Sweep line */}
+      <div className="sweep-line top-1/2" style={{ animationDelay: "1s" }} />
+    </div>
+
+    <div className="max-w-[1400px] mx-auto px-8 md:px-16 py-16">
+      <div className="flex flex-col md:flex-row gap-8 mb-12">
         <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.2 }}
-          className="hidden md:block max-w-xs text-muted-foreground font-mono text-xs leading-relaxed text-right mt-6"
+          className="flex-1 text-muted-foreground font-mono text-sm leading-relaxed"
         >
           Purpose-built modules forming a unified drone operations ecosystem.
           Each handles a specific domain — from identity to intelligence.
         </motion.p>
+        {/* Decorative SVG */}
+        <motion.svg
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 0.15 }}
+          viewport={{ once: true }}
+          viewBox="0 0 120 120"
+          className="w-24 h-24 shrink-0 rotate-slow text-primary hidden md:block"
+          fill="none"
+        >
+          <circle cx="60" cy="60" r="55" stroke="currentColor" strokeWidth="0.5" />
+          <circle cx="60" cy="60" r="40" stroke="currentColor" strokeWidth="0.5" />
+          <circle cx="60" cy="60" r="25" stroke="currentColor" strokeWidth="0.5" />
+          <line x1="60" y1="0" x2="60" y2="120" stroke="currentColor" strokeWidth="0.3" />
+          <line x1="0" y1="60" x2="120" y2="60" stroke="currentColor" strokeWidth="0.3" />
+        </motion.svg>
       </div>
 
       {/* Tool grid */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-[1px] bg-border">
         {tools.map((tool, i) => (
           <motion.div
             key={tool.id}
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: i * 0.02 }}
-            className="border border-border p-4 group hover:bg-foreground hover:text-background transition-colors duration-200 cursor-default"
+            transition={{ delay: i * 0.03 }}
+            className="bg-background p-4 group hover:bg-foreground hover:text-background transition-all duration-200 cursor-default relative overflow-hidden"
           >
-            <span className="text-label text-muted-foreground text-[9px] group-hover:text-background/50">{tool.id}</span>
-            <h3 className="font-semibold text-sm mt-1 group-hover:text-background">
+            {/* Hover noise texture */}
+            <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity pointer-events-none">
+              <img src={topoTexture} alt="" className="w-full h-full object-cover" loading="lazy" />
+            </div>
+            <span className="text-label text-muted-foreground text-[9px] group-hover:text-background/50 relative z-10">{tool.id}</span>
+            <h3 className="font-semibold text-sm mt-1 group-hover:text-background relative z-10">
               {tool.name}
             </h3>
-            <p className="text-label text-muted-foreground text-[9px] mt-1 group-hover:text-background/60">{tool.role}</p>
+            <p className="text-label text-muted-foreground text-[9px] mt-1 group-hover:text-background/60 relative z-10">{tool.role}</p>
           </motion.div>
         ))}
-        {/* Empty filler cell */}
-        <div className="border border-border p-4 bg-muted/30" />
+        <div className="bg-primary p-4 flex items-center justify-center">
+          <span className="text-primary-foreground text-label text-[9px]">MORE COMING</span>
+        </div>
       </div>
     </div>
   </section>

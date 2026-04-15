@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import hexacopter from "@/assets/hexacopter-processed.jpg";
 
 interface Tool {
   name: string;
@@ -57,24 +58,52 @@ const categories: Category[] = [
 ];
 
 const ToolDetails = () => (
-  <section className="relative py-24 border-t border-border">
-    <div className="max-w-[1400px] mx-auto px-8 md:px-16">
-      <motion.p
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        className="text-label text-primary text-[10px] mb-3"
-      >
-        TOOL INDEX
-      </motion.p>
-      <motion.h2
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className="text-5xl md:text-7xl font-bold mb-20"
-      >
-        Module Details
-      </motion.h2>
+  <section className="relative py-24 border-t border-border overflow-hidden">
+    {/* Background image - very faded */}
+    <div className="absolute right-0 top-0 w-1/2 h-full opacity-[0.03] pointer-events-none hidden lg:block">
+      <img src={hexacopter} alt="" className="w-full h-full object-cover" loading="lazy" />
+    </div>
+
+    <div className="relative z-10 max-w-[1400px] mx-auto px-8 md:px-16">
+      <div className="flex items-start justify-between mb-16">
+        <div>
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="text-label text-primary text-[10px] mb-3"
+          >
+            TOOL INDEX
+          </motion.p>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-5xl md:text-7xl font-bold"
+          >
+            Module Details
+          </motion.h2>
+        </div>
+
+        {/* Decorative crosshair */}
+        <motion.svg
+          initial={{ opacity: 0, rotate: -90 }}
+          whileInView={{ opacity: 0.2, rotate: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1 }}
+          viewBox="0 0 80 80"
+          className="w-16 h-16 shrink-0 hidden md:block"
+          fill="none"
+        >
+          <circle cx="40" cy="40" r="30" stroke="hsl(14,100%,50%)" strokeWidth="0.5" />
+          <circle cx="40" cy="40" r="15" stroke="hsl(14,100%,50%)" strokeWidth="0.5" />
+          <circle cx="40" cy="40" r="3" fill="hsl(14,100%,50%)" />
+          <line x1="40" y1="0" x2="40" y2="25" stroke="hsl(14,100%,50%)" strokeWidth="0.5" />
+          <line x1="40" y1="55" x2="40" y2="80" stroke="hsl(14,100%,50%)" strokeWidth="0.5" />
+          <line x1="0" y1="40" x2="25" y2="40" stroke="hsl(14,100%,50%)" strokeWidth="0.5" />
+          <line x1="55" y1="40" x2="80" y2="40" stroke="hsl(14,100%,50%)" strokeWidth="0.5" />
+        </motion.svg>
+      </div>
 
       <div className="space-y-20">
         {categories.map((cat, ci) => (
@@ -86,25 +115,34 @@ const ToolDetails = () => (
             transition={{ delay: ci * 0.05 }}
           >
             {/* Category header */}
-            <div className="flex items-baseline justify-between mb-6">
-              <h3 className="text-2xl md:text-3xl font-bold">{cat.label}</h3>
+            <div className="flex items-baseline justify-between mb-4">
+              <div className="flex items-center gap-3">
+                <div className="w-3 h-3 bg-primary" />
+                <h3 className="text-2xl md:text-3xl font-bold">{cat.label}</h3>
+              </div>
               <span className="text-label text-muted-foreground text-[10px]">[{cat.code}]</span>
             </div>
             <div className="tech-line mb-6" />
 
             {/* Tool entries */}
-            <div className="grid md:grid-cols-2 gap-6">
-              {cat.tools.map((tool) => (
-                <div
+            <div className="grid md:grid-cols-2 gap-4">
+              {cat.tools.map((tool, ti) => (
+                <motion.div
                   key={tool.name}
-                  className="border-l-2 border-border pl-5 py-2 hover:border-primary transition-colors"
+                  initial={{ opacity: 0, x: ti % 2 === 0 ? -10 : 10 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: ti * 0.05 }}
+                  className="border border-border p-5 hover:border-primary transition-all group relative overflow-hidden"
                 >
-                  <div className="flex items-baseline gap-3 mb-1">
-                    <h4 className="text-lg font-semibold">{tool.name}</h4>
+                  {/* Hover accent bar */}
+                  <div className="absolute left-0 top-0 w-1 h-0 bg-primary group-hover:h-full transition-all duration-300" />
+                  <div className="flex items-baseline gap-3 mb-2">
+                    <h4 className="text-lg font-semibold group-hover:text-primary transition-colors">{tool.name}</h4>
                     <span className="text-label text-muted-foreground text-[9px]">{tool.role}</span>
                   </div>
                   <p className="text-muted-foreground font-mono text-xs leading-relaxed">{tool.desc}</p>
-                </div>
+                </motion.div>
               ))}
             </div>
           </motion.div>
