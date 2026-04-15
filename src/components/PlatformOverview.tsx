@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import CrosshairSVG from "./CrosshairSVG";
 
 const tools = [
   { id: "01", name: "Pocket-ID", role: "Identity & SSO" },
@@ -22,22 +21,18 @@ const tools = [
 ];
 
 const PlatformOverview = () => (
-  <section id="overview" className="relative py-32 overflow-hidden">
-    {/* Decorative grid overlay */}
-    <div className="absolute inset-0 grid-bg-fine opacity-50" />
-
-    <div className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-12">
+  <section id="overview" className="relative py-24 border-t border-border">
+    <div className="max-w-[1400px] mx-auto px-8 md:px-16">
       {/* Section header */}
-      <div className="flex items-start gap-6 mb-20">
-        <CrosshairSVG className="text-primary mt-1 shrink-0" />
+      <div className="flex items-start justify-between mb-16">
         <div>
           <motion.p
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="text-label text-primary mb-3"
+            className="text-label text-primary text-[10px] mb-3"
           >
-            SYS::OVERVIEW
+            SYSTEM OVERVIEW
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -45,47 +40,44 @@ const PlatformOverview = () => (
             viewport={{ once: true }}
             className="text-5xl md:text-7xl font-bold"
           >
-            System Overview
+            17 Tools.
+            <br />
+            One Platform.
           </motion.h2>
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="mt-6 max-w-xl text-muted-foreground leading-relaxed"
-          >
-            17 purpose-built tools forming a unified drone operations ecosystem. 
-            Each module handles a specific domain — from identity to intelligence.
-          </motion.p>
         </div>
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2 }}
+          className="hidden md:block max-w-xs text-muted-foreground font-mono text-xs leading-relaxed text-right mt-6"
+        >
+          Purpose-built modules forming a unified drone operations ecosystem.
+          Each handles a specific domain — from identity to intelligence.
+        </motion.p>
       </div>
 
       {/* Tool grid */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-[1px] bg-border">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
         {tools.map((tool, i) => (
           <motion.div
             key={tool.id}
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ delay: i * 0.03 }}
-            className="bg-background p-5 group hover:bg-secondary transition-colors duration-300"
+            transition={{ delay: i * 0.02 }}
+            className="border border-border p-4 group hover:bg-foreground hover:text-background transition-colors duration-200 cursor-default"
           >
-            <span className="text-label text-muted-foreground text-[10px]">{tool.id}</span>
-            <h3 className="font-semibold text-lg mt-2 group-hover:text-primary transition-colors">
+            <span className="text-label text-muted-foreground text-[9px] group-hover:text-background/50">{tool.id}</span>
+            <h3 className="font-semibold text-sm mt-1 group-hover:text-background">
               {tool.name}
             </h3>
-            <p className="text-label text-muted-foreground mt-1 text-[10px]">{tool.role}</p>
+            <p className="text-label text-muted-foreground text-[9px] mt-1 group-hover:text-background/60">{tool.role}</p>
           </motion.div>
         ))}
+        {/* Empty filler cell */}
+        <div className="border border-border p-4 bg-muted/30" />
       </div>
-
-      {/* Decorative SVG divider */}
-      <svg className="w-full h-8 mt-12 text-border" viewBox="0 0 1400 30" fill="none">
-        <line x1="0" y1="15" x2="1400" y2="15" stroke="currentColor" strokeWidth="0.5" />
-        <circle cx="700" cy="15" r="4" stroke="currentColor" strokeWidth="0.5" />
-        <circle cx="700" cy="15" r="1.5" fill="currentColor" />
-      </svg>
     </div>
   </section>
 );

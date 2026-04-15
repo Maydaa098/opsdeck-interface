@@ -6,9 +6,6 @@ import FooterSection from "@/components/FooterSection";
 
 const Index = () => (
   <div className="relative min-h-screen bg-background">
-    {/* Noise overlay */}
-    <div className="noise-overlay" />
-
     <HeroSection />
     <PlatformOverview />
     <ToolDetails />
