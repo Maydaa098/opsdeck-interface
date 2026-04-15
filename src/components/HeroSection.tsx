@@ -60,7 +60,7 @@ const HeroSection = () => (
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.2 }}
-              className="text-[clamp(3.5rem,10vw,8rem)] font-bold leading-[0.9] tracking-tight glitch-text"
+              className="text-[clamp(3.5rem,10vw,8rem)] font-bold leading-[0.9] tracking-tight glitch-text-auto"
             >
               Ops Deck
             </motion.h1>
@@ -170,12 +170,12 @@ const HeroSection = () => (
           </div>
 
           {/* 3D Model Embed */}
-          <div className="absolute inset-0 flex items-center justify-center">
+          <div className="absolute inset-0">
             <iframe
-              src="https://www.cgtrader.com/embed/items/4125317"
+              src="https://sketchfab.com/models/376960b44dc1443d8fca685ab85cabc6/embed"
               className="w-full h-full border-none"
-              title="3D Drone Model"
-              allow="autoplay; fullscreen"
+              title="DJI Phantom 2 Quadcopter"
+              allow="autoplay; fullscreen; xr-spatial-tracking"
             />
           </div>
 
