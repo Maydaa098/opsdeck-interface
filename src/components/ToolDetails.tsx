@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import hexacopter from "@/assets/hexacopter-processed.jpg";
+import droneSketches from "@/assets/drone-sketches.webp";
 
 interface Tool {
   name: string;
@@ -85,7 +86,6 @@ const ToolDetails = () => (
           </motion.h2>
         </div>
 
-        {/* Decorative crosshair */}
         <motion.svg
           initial={{ opacity: 0, rotate: -90 }}
           whileInView={{ opacity: 0.2, rotate: 0 }}
@@ -105,6 +105,58 @@ const ToolDetails = () => (
         </motion.svg>
       </div>
 
+      {/* Drone Sketches Showcase - inserted between header and categories */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+        className="mb-20 relative"
+      >
+        <div className="flex flex-col lg:flex-row gap-8 items-start">
+          {/* Sketches image */}
+          <div className="flex-1 relative border border-border overflow-hidden group">
+            <div className="absolute inset-0 grid-bg-fine opacity-20" />
+            <img
+              src={droneSketches}
+              alt="Custom drone concept sketches and industrial design drawings"
+              className="w-full h-auto relative z-10 group-hover:scale-[1.01] transition-transform duration-700"
+              loading="lazy"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent z-20 pointer-events-none" />
+            {/* Corner markers */}
+            <div className="absolute top-2 left-2 w-4 h-4 border-t-2 border-l-2 border-primary z-20" />
+            <div className="absolute top-2 right-2 w-4 h-4 border-t-2 border-r-2 border-primary z-20" />
+            <div className="absolute bottom-2 left-2 w-4 h-4 border-b-2 border-l-2 border-primary z-20" />
+            <div className="absolute bottom-2 right-2 w-4 h-4 border-b-2 border-r-2 border-primary z-20" />
+          </div>
+          {/* Description panel */}
+          <div className="lg:w-80 shrink-0">
+            <p className="text-label text-primary text-[10px] mb-2">HARDWARE R&D</p>
+            <h3 className="text-2xl font-bold mb-4">Custom Drone Design</h3>
+            <div className="tech-line mb-4" />
+            <p className="text-muted-foreground font-mono text-xs leading-relaxed mb-4">
+              Purpose-built airframes designed in-house for South African operational conditions. 
+              Each concept explores thrust efficiency, payload integration, and field serviceability.
+            </p>
+            <div className="space-y-2 font-mono text-[10px]">
+              <div className="flex justify-between border-b border-border pb-1">
+                <span className="text-muted-foreground">STATUS</span>
+                <span className="text-primary">CONCEPT PHASE</span>
+              </div>
+              <div className="flex justify-between border-b border-border pb-1">
+                <span className="text-muted-foreground">ITERATIONS</span>
+                <span>12+ CONCEPTS</span>
+              </div>
+              <div className="flex justify-between border-b border-border pb-1">
+                <span className="text-muted-foreground">FOCUS</span>
+                <span>INDUSTRIAL / SURVEY</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </motion.div>
+
       <div className="space-y-20">
         {categories.map((cat, ci) => (
           <motion.div
@@ -114,7 +166,6 @@ const ToolDetails = () => (
             viewport={{ once: true }}
             transition={{ delay: ci * 0.05 }}
           >
-            {/* Category header */}
             <div className="flex items-baseline justify-between mb-4">
               <div className="flex items-center gap-3">
                 <div className="w-3 h-3 bg-primary" />
@@ -124,7 +175,6 @@ const ToolDetails = () => (
             </div>
             <div className="tech-line mb-6" />
 
-            {/* Tool entries */}
             <div className="grid md:grid-cols-2 gap-4">
               {cat.tools.map((tool, ti) => (
                 <motion.div
@@ -135,7 +185,6 @@ const ToolDetails = () => (
                   transition={{ delay: ti * 0.05 }}
                   className="border border-border p-5 hover:border-primary transition-all group relative overflow-hidden"
                 >
-                  {/* Hover accent bar */}
                   <div className="absolute left-0 top-0 w-1 h-0 bg-primary group-hover:h-full transition-all duration-300" />
                   <div className="flex items-baseline gap-3 mb-2">
                     <h4 className="text-lg font-semibold group-hover:text-primary transition-colors">{tool.name}</h4>
