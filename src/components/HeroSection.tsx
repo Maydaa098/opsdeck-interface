@@ -1,8 +1,5 @@
 import { motion } from "framer-motion";
-import { Suspense, lazy } from "react";
 import hexacopter from "@/assets/hexacopter-processed.jpg";
-
-const DroneScene = lazy(() => import("./DroneScene"));
 
 const HeroSection = () => (
   <section className="relative min-h-screen flex items-stretch overflow-hidden scanlines">
@@ -162,7 +159,7 @@ const HeroSection = () => (
           </motion.div>
         </div>
 
-        {/* Right side - 3D drone */}
+        {/* Right side - 3D drone model embed */}
         <div className="hidden lg:flex flex-1 relative items-center justify-center overflow-hidden">
           {/* Grid background */}
           <div className="absolute inset-0 grid-bg-fine" />
@@ -172,21 +169,18 @@ const HeroSection = () => (
             <div className="absolute w-full h-[1px] bg-primary/20 scan-line-anim" />
           </div>
 
-          {/* 3D Scene */}
-          <div className="absolute inset-0">
-            <Suspense fallback={
-              <div className="w-full h-full flex items-center justify-center">
-                <div className="w-16 h-16 border border-border rotate-slow" style={{ borderRadius: "0" }}>
-                  <div className="w-full h-full border border-primary rotate-45 scale-75" />
-                </div>
-              </div>
-            }>
-              <DroneScene />
-            </Suspense>
+          {/* 3D Model Embed */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <iframe
+              src="https://www.cgtrader.com/embed/items/4125317"
+              className="w-full h-full border-none"
+              title="3D Drone Model"
+              allow="autoplay; fullscreen"
+            />
           </div>
 
           {/* Overlay annotations */}
-          <div className="absolute top-8 left-8 z-10">
+          <div className="absolute top-8 left-8 z-10 pointer-events-none">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -198,7 +192,7 @@ const HeroSection = () => (
               </p>
             </motion.div>
           </div>
-          <div className="absolute top-8 right-8 z-10 text-right">
+          <div className="absolute top-8 right-8 z-10 text-right pointer-events-none">
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -210,7 +204,7 @@ const HeroSection = () => (
               </p>
             </motion.div>
           </div>
-          <div className="absolute bottom-16 left-8 z-10">
+          <div className="absolute bottom-16 left-8 z-10 pointer-events-none">
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -221,7 +215,7 @@ const HeroSection = () => (
               <span className="text-label text-[9px] text-primary">LIVE MODEL</span>
             </motion.div>
           </div>
-          <div className="absolute bottom-16 right-8 z-10 text-right">
+          <div className="absolute bottom-16 right-8 z-10 text-right pointer-events-none">
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
