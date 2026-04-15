@@ -57,15 +57,15 @@ const categories: Category[] = [
 ];
 
 const ToolDetails = () => (
-  <section className="relative py-32">
-    <div className="max-w-[1400px] mx-auto px-6 md:px-12">
+  <section className="relative py-24 border-t border-border">
+    <div className="max-w-[1400px] mx-auto px-8 md:px-16">
       <motion.p
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
-        className="text-label text-primary mb-3"
+        className="text-label text-primary text-[10px] mb-3"
       >
-        SYS::MODULES
+        TOOL INDEX
       </motion.p>
       <motion.h2
         initial={{ opacity: 0, y: 20 }}
@@ -73,45 +73,38 @@ const ToolDetails = () => (
         viewport={{ once: true }}
         className="text-5xl md:text-7xl font-bold mb-20"
       >
-        Tool Index
+        Module Details
       </motion.h2>
 
-      <div className="space-y-24">
+      <div className="space-y-20">
         {categories.map((cat, ci) => (
           <motion.div
             key={cat.code}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: ci * 0.1 }}
+            transition={{ delay: ci * 0.05 }}
           >
             {/* Category header */}
-            <div className="flex items-center gap-4 mb-8">
-              <div className="w-3 h-3 border border-primary rotate-45" />
+            <div className="flex items-baseline justify-between mb-6">
               <h3 className="text-2xl md:text-3xl font-bold">{cat.label}</h3>
-              <span className="text-label text-muted-foreground ml-auto">[{cat.code}]</span>
+              <span className="text-label text-muted-foreground text-[10px]">[{cat.code}]</span>
             </div>
-            <div className="h-[1px] bg-border mb-8" />
+            <div className="tech-line mb-6" />
 
             {/* Tool entries */}
-            <div className="grid md:grid-cols-2 gap-[1px] bg-border">
-              {cat.tools.map((tool, ti) => (
-                <motion.div
+            <div className="grid md:grid-cols-2 gap-6">
+              {cat.tools.map((tool) => (
+                <div
                   key={tool.name}
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: ti * 0.05 }}
-                  className="bg-background p-6 md:p-8 group hover:bg-card transition-colors border-l-2 border-transparent hover:border-primary"
+                  className="border-l-2 border-border pl-5 py-2 hover:border-primary transition-colors"
                 >
-                  <div className="flex items-baseline gap-3 mb-2">
-                    <h4 className="text-xl font-semibold group-hover:text-primary transition-colors">
-                      {tool.name}
-                    </h4>
-                    <span className="text-label text-muted-foreground text-[10px]">{tool.role}</span>
+                  <div className="flex items-baseline gap-3 mb-1">
+                    <h4 className="text-lg font-semibold">{tool.name}</h4>
+                    <span className="text-label text-muted-foreground text-[9px]">{tool.role}</span>
                   </div>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{tool.desc}</p>
-                </motion.div>
+                  <p className="text-muted-foreground font-mono text-xs leading-relaxed">{tool.desc}</p>
+                </div>
               ))}
             </div>
           </motion.div>
