@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import hexacopter from "@/assets/hexacopter-processed.jpg";
 
 const HeroSection = () => (
-  <section className="relative min-h-screen flex items-stretch overflow-hidden scanlines">
+  <section className="relative min-h-screen flex items-stretch overflow-hidden scanlines crt-vignette flicker">
     {/* Sweep line animation */}
     <div className="sweep-line top-[40%]" />
     <div className="sweep-line top-[70%]" style={{ animationDelay: "2s" }} />
@@ -61,6 +61,7 @@ const HeroSection = () => (
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.2 }}
               className="text-[clamp(3.5rem,10vw,8rem)] font-bold leading-[0.9] tracking-tight glitch-text-auto"
+              data-text="Ops Deck"
             >
               Ops Deck
             </motion.h1>
