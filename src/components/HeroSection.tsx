@@ -139,17 +139,12 @@ const HeroSection = () => (
               transition={{ delay: 1.1 }}
               className="mt-8 flex flex-wrap gap-4 items-center"
             >
-              <div className="relative group">
-                <button
-                  disabled
-                  className="border-2 border-muted-foreground/30 px-8 py-3 text-label text-[10px] text-muted-foreground/50 cursor-not-allowed relative overflow-hidden"
-                >
-                  LOGIN WITH POCKET-ID
-                </button>
-                <div className="absolute -bottom-6 left-0 text-[10px] font-mono text-primary opacity-0 group-hover:opacity-100 transition-opacity">
-                  COMING SOON
-                </div>
-              </div>
+              <a
+                href="https://github.com/Maydaa098/geo-spatial-sandbox.git"
+                className="border-2 border-foreground px-8 py-3 text-label text-[10px] hover:bg-primary hover:border-primary hover:text-primary-foreground transition-all duration-300"
+              >
+                LOGIN WITH POCKET-ID
+              </a>
               <a
                 href="#overview"
                 className="border-2 border-foreground px-8 py-3 text-label text-[10px] hover:bg-primary hover:border-primary hover:text-primary-foreground transition-all duration-300"
