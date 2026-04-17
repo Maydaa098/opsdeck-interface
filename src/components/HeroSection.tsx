@@ -132,7 +132,7 @@ const HeroSection = () => (
               </table>
             </motion.div>
 
-            {/* CTAs */}
+            {/* CTAs - Updated to navigate to /dashboard */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
