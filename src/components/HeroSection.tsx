@@ -140,7 +140,7 @@ const HeroSection = () => (
               className="mt-8 flex flex-wrap gap-4 items-center"
             >
               <a
-                href="https://github.com/Maydaa098/geo-spatial-sandbox.git"
+                href="https://maydaa098.github.io/geo-spatial-sandbox/"
                 className="border-2 border-foreground px-8 py-3 text-label text-[10px] hover:bg-primary hover:border-primary hover:text-primary-foreground transition-all duration-300"
               >
                 LOGIN WITH POCKET-ID
